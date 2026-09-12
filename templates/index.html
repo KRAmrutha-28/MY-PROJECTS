@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Data Visualizer · Colorful Edition</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ---------- Colorful Variables ---------- */
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-6: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            
+            --primary: #ff6b6b;
+            --primary-light: #ff8e8e;
+            --primary-dark: #c92a2a;
+            --secondary: #4ecdc4;
+            --secondary-light: #6ee7e0;
+            --secondary-dark: #2c7a7b;
+            --accent-1: #ffe66d;
+            --accent-2: #ff9f1c;
+            --accent-3: #bf7af0;
+            --success: #51cf66;
+            --warning: #fcc419;
+            --danger: #ff6b6b;
+            
+            --bg-gradient: linear-gradient(145deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg-hover: rgba(255, 255, 255, 1);
+            
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --text-white: #ffffff;
+            
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 20px 30px rgba(0, 0, 0, 0.2);
+            
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ---------- Base ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            padding: 2rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Animated background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---------- Colorful Cards ---------- */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            background: var(--card-bg-hover);
+        }
+
+        /* Different colored top borders for variety */
+        .card:nth-child(2)::before { background: var(--gradient-2); }
+        .card:nth-child(3)::before { background: var(--gradient-3); }
+        .card:nth-child(4)::before { background: var(--gradient-4); }
+        .card:nth-child(5)::before { background: var(--gradient-5); }
+
+        /* ---------- Typography ---------- */
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #FFE66D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: titleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--text-dark), var(--secondary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 i {
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .text-muted {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ---------- Colorful Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B6B, #C92A2A);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #51CF66, #2B8E3B);
+            color: white;
+            box-shadow: 0 4px 15px rgba(81, 207, 102, 0.4);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 6px 20px rgba(81, 207, 102, 0.6);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #FF6B6B, #C92A2A);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary-dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-icon {
+            padding: 0.75rem;
+            border-radius: 50%;
+        }
+
+        /* ---------- Colorful File Upload ---------- */
+        .file-upload-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 3px dashed transparent;
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            transition: var(--transition);
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--secondary);
+            background: rgba(78, 205, 196, 0.05);
+        }
+
+        .file-label {
+            background: linear-gradient(135deg, #FF9F1C, #FF6B6B);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 159, 28, 0.3);
+        }
+
+        .file-label:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 159, 28, 0.5);
+        }
+
+        .file-name {
+            color: var(--text-dark);
+            font-weight: 500;
+            background: rgba(255,255,255,0.9);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ---------- Status Messages ---------- */
+        .status-message {
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            margin: 1rem 0;
+            display: none;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-success {
+            background: linear-gradient(135deg, #51CF66, #2B8E3B);
+            color: white;
+        }
+
+        .status-error {
+            background: linear-gradient(135deg, #FF6B6B, #C92A2A);
+            color: white;
+        }
+
+        /* ---------- Colorful Tabs ---------- */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(5px);
+        }
+
+        .tab i {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            background: white;
+        }
+
+        .tab:hover i {
+            color: var(--secondary);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            color: white;
+        }
+
+        .tab.active i {
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ---------- Colorful Language & Voice Selectors ---------- */
+        .selector-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .selector-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .selector-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .selector-group select {
+            width: 100%;
+            padding: 0.75rem 2rem 0.75rem 1rem;
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            background: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%234ECDC4' viewBox='0 0 20 20'%3E%3Cpath stroke='%234ECDC4' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .selector-group select:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.2);
+        }
+
+        .selector-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2);
+        }
+
+        .note-text {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* ---------- Colorful Sample Queries ---------- */
+        .sample-queries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .sample-query {
+            background: linear-gradient(135deg, #FFE66D, #FF9F1C);
+            color: var(--text-dark);
+            padding: 0.5rem 1.25rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sample-query:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: white;
+        }
+
+        .sample-query:nth-child(2n) {
+            background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+            color: white;
+        }
+
+        .sample-query:nth-child(3n) {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            color: white;
+        }
+
+        /* ---------- Colorful SQL Box ---------- */
+        .sql-box {
+            background: linear-gradient(135deg, #2D3436, #1E272E);
+            color: #A3FFB4;
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 1rem 0;
+            display: none;
+            border-left: 6px solid var(--success);
+            box-shadow: var(--shadow);
+        }
+
+        /* ---------- Colorful Response Area ---------- */
+        .response-area {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-top: 1.5rem;
+        }
+
+        .response-box {
+            flex: 1;
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 6px solid transparent;
+            border-image: var(--gradient-2);
+            border-image-slice: 1;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .speaker-btn {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            color: white;
+            border: none;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .speaker-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .speaker-btn.speaking {
+            animation: speakerPulse 1s infinite;
+        }
+
+        @keyframes speakerPulse {
+            0% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(78, 205, 196, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0); }
+        }
+
+        /* ---------- Colorful Tables ---------- */
+        .table-container {
+            overflow-x: auto;
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            color: white;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        td {
+            padding: 0.875rem 1rem;
+            background: white;
+            border-bottom: 2px solid #F1F3F5;
+        }
+
+        tr:nth-child(even) td {
+            background: #F8F9FA;
+        }
+
+        tr:hover td {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+        }
+
+        /* ---------- Colorful Chart Section ---------- */
+        .column-selector {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            border: 2px solid transparent;
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        var(--gradient-3) border-box;
+        }
+
+        .chart-container {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            border-radius: var(--radius);
+            padding: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 280px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* ---------- Colorful History Items ---------- */
+        .history-item {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 6px solid transparent;
+            border-image: var(--gradient-4);
+            border-image-slice: 1;
+            transition: var(--transition);
+        }
+
+        .history-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .history-question {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .history-response {
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .history-meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px dashed var(--secondary-light);
+        }
+
+        .use-btn {
+            background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .use-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
+        }
+
+        /* ---------- Loading Spinner ---------- */
+        .loading {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 4px solid rgba(78, 205, 196, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ---------- Input Fields ---------- */
+        .input-field {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.2);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .card { padding: 1.5rem; }
+            .input-group { flex-direction: column; }
+            .btn { width: 100%; }
+            .selector-row { flex-direction: column; }
+            .file-upload-area { flex-direction: column; align-items: stretch; }
+            .file-label { text-align: center; }
+        }
+
+        /* Additional colorful accents */
+        .fa-microphone, .fa-microphone-slash {
+            color: inherit;
+        }
+
+        .fa-robot { color: var(--accent-3); }
+        .fa-chart-pie { color: var(--accent-2); }
+        .fa-table { color: var(--secondary); }
+        .fa-history { color: var(--primary); }
+
+        /* Rainbow divider */
+        .rainbow-divider {
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #FFE66D, #FF9F1C, #BF7AF0);
+            margin: 1.5rem 0;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="card">
+            <h1><i class="fas fa-magic"></i> AI Data Visualizer · Colorful Edition</h1>
+            <p class="text-muted">Upload CSV, ask questions with voice or text – see SQL and results instantly in vibrant colors!</p>
+        </div>
+
+        <!-- Upload Card -->
+        <div class="card">
+            <h2><i class="fas fa-cloud-upload-alt"></i> Upload Your Data</h2>
+            <p class="text-muted">Supported: CSV, Excel (max 50MB)</p>
+            
+            <div class="file-upload-area">
+                <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" style="display: none;">
+                <label for="fileInput" class="file-label">
+                    <i class="fas fa-folder-open"></i> Choose File
+                </label>
+                <span class="file-name" id="fileName">No file selected</span>
+                <div style="flex:1"></div>
+                <button onclick="uploadFile()" class="btn btn-success">
+                    <i class="fas fa-upload"></i> Upload
+                </button>
+                <button onclick="clearData()" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Clear
+                </button>
+            </div>
+            
+            <div id="statusMessage" class="status-message"></div>
+        </div>
+
+        <!-- Data Info (hidden until upload) -->
+        <div id="dataInfo" style="display: none;">
+            <div class="card">
+                <div id="dataSummary" class="text-muted" style="font-size:1rem;"></div>
+            </div>
+
+            <!-- Language & Voice Selectors -->
+            <div class="selector-row">
+                <div class="selector-group">
+                    <label for="languageSelect"><i class="fas fa-language"></i> Recognition Language</label>
+                    <select id="languageSelect" onchange="changeLanguage()">
+                        <option value="en-US">🇺🇸 English (US)</option>
+                        <option value="en-GB">🇬🇧 English (UK)</option>
+                        <option value="es-ES">🇪🇸 Español</option>
+                        <option value="fr-FR">🇫🇷 Français</option>
+                        <option value="de-DE">🇩🇪 Deutsch</option>
+                        <option value="it-IT">🇮🇹 Italiano</option>
+                        <option value="pt-PT">🇵🇹 Português</option>
+                        <option value="ru-RU">🇷🇺 Русский</option>
+                        <option value="ja-JP">🇯🇵 日本語</option>
+                        <option value="zh-CN">🇨🇳 中文</option>
+                        <option value="hi-IN">🇮🇳 हिन्दी</option>
+                        <option value="kn-IN">🇮🇳 ಕನ್ನಡ</option>
+                        <option value="ta-IN">🇮🇳 தமிழ்</option>
+                        <option value="te-IN">🇮🇳 తెలుగు</option>
+                        <option value="ml-IN">🇮🇳 മലയാളം</option>
+                        <option value="ar-SA">🇸🇦 العربية</option>
+                    </select>
+                    <div class="note-text" id="recognitionNote"></div>
+                </div>
+                <div class="selector-group">
+                    <label for="voiceSelect"><i class="fas fa-microphone-alt"></i> Voice Output</label>
+                    <select id="voiceSelect" onchange="onVoiceChange()">
+                        <option value="">Loading voices...</option>
+                    </select>
+                    <div class="note-text" id="voiceNote"></div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('query')"><i class="fas fa-question-circle"></i> Ask</button>
+                <button class="tab" onclick="switchTab('charts')"><i class="fas fa-chart-pie"></i> Charts</button>
+                <button class="tab" onclick="switchTab('data')"><i class="fas fa-table"></i> Preview</button>
+                <button class="tab" onclick="switchTab('history')"><i class="fas fa-history"></i> History</button>
+            </div>
+
+            <!-- Query Tab -->
+            <div id="queryTab" class="tab-content active">
+                <h3><i class="fas fa-robot"></i> Ask a Question</h3>
+                <div class="sample-queries" id="sampleQueries"></div>
+                
+                <div class="input-group">
+                    <input type="text" id="questionInput" class="input-field" placeholder="e.g., Show first 5 rows, average price, distribution of region...">
+                    <button id="micButton" class="btn btn-outline btn-icon" onclick="toggleVoiceRecognition()" title="Voice input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button onclick="askQuestion()" class="btn btn-primary" id="askBtn">
+                        <i class="fas fa-paper-plane"></i> Ask
+                    </button>
+                </div>
+                <div class="note-text" id="listeningNote"></div>
+
+                <!-- SQL Display -->
+                <div id="sqlDisplay" class="sql-box"></div>
+
+                <!-- Response Area -->
+                <div class="response-area">
+                    <div id="queryResponse" class="response-box">Ask a question to get insights</div>
+                    <button id="speakerButton" class="speaker-btn" onclick="speakResponse()" title="Read aloud" style="display: none;">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+
+                <!-- Results Table -->
+                <div id="queryResults" class="table-container" style="display: none;"></div>
+            </div>
+
+            <!-- Charts Tab -->
+            <div id="chartsTab" class="tab-content">
+                <h3><i class="fas fa-chart-bar"></i> Chart Generator</h3>
+                <div class="column-selector">
+                    <div class="selector-group">
+                        <label>Chart Type</label>
+                        <select id="chartType" onchange="updateChartColumns()">
+                            <option value="bar">📊 Bar Chart</option>
+                            <option value="pie">🥧 Pie Chart</option>
+                            <option value="line">📈 Line Chart</option>
+                        </select>
+                    </div>
+                    <div class="selector-group" id="xColumnGroup">
+                        <label>X Axis / Category</label>
+                        <select id="chartXColumn"></select>
+                    </div>
+                    <div class="selector-group" id="yColumnGroup">
+                        <label>Y Axis / Value</label>
+                        <select id="chartYColumn"></select>
+                    </div>
+                    <button onclick="generateChart()" class="btn btn-primary">
+                        <i class="fas fa-chart-line"></i> Generate
+                    </button>
+                </div>
+                <div id="chartError" class="status-message status-error" style="display: none;"></div>
+                <div class="chart-card">
+                    <h4 id="chartTitle" class="text-muted" style="margin-bottom:1rem;">Chart Preview</h4>
+                    <div class="chart-container" id="chartContainer">
+                        <p class="text-muted"><i class="fas fa-chart-pie"></i> Select options and generate</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Preview Tab -->
+            <div id="dataTab" class="tab-content">
+                <h3><i class="fas fa-database"></i> Data Preview</h3>
+                <div class="table-container" id="dataPreview"></div>
+                <p class="text-muted" id="dataStats" style="margin-top:0.75rem;"></p>
+            </div>
+
+            <!-- History Tab -->
+            <div id="historyTab" class="tab-content">
+                <h3><i class="fas fa-history"></i> Conversation History</h3>
+                <div id="historyContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------- Global Variables ----------
+        let sessionId = '{{ session_id }}';
+        let currentColumns = [];
+        let numericColumns = [];
+        let categoricalColumns = [];
+        let totalRows = 0;
+        let fileTotalRows = 0;
+
+        // Speech Recognition
+        let recognition = null;
+        let isListening = false;
+        let currentLanguage = 'en-US';
+
+        // Speech Synthesis
+        let synthesis = window.speechSynthesis;
+        let currentUtterance = null;
+        let availableVoices = [];
+        let selectedVoice = null;
+
+        // ---------- Speech Recognition Functions ----------
+        function initSpeechRecognition(lang) {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                document.getElementById('micButton').style.display = 'none';
+                document.getElementById('recognitionNote').innerText = 'Voice input not supported in this browser. Try Chrome.';
+                return;
+            }
+            
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = true;
+            recognition.lang = lang;
+            recognition.maxAlternatives = 1;
+
+            recognition.onstart = function() {
+                isListening = true;
+                document.getElementById('micButton').classList.add('btn-danger');
+                document.getElementById('micButton').innerHTML = '<i class="fas fa-microphone-slash"></i>';
+                document.getElementById('listeningNote').innerText = 'Listening... speak now.';
+            };
+
+            recognition.onend = function() {
+                isListening = false;
+                document.getElementById('micButton').classList.remove('btn-danger');
+                document.getElementById('micButton').innerHTML = '<i class="fas fa-microphone"></i>';
+                document.getElementById('listeningNote').innerText = '';
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                isListening = false;
+                document.getElementById('micButton').classList.remove('btn-danger');
+                document.getElementById('micButton').innerHTML = '<i class="fas fa-microphone"></i>';
+                
+                let errorMsg = 'Error: ' + event.error;
+                if (event.error === 'language-not-supported') {
+                    errorMsg = 'Language not supported for recognition. Try English.';
+                } else if (event.error === 'no-speech') {
+                    errorMsg = 'No speech detected. Try again.';
+                } else if (event.error === 'audio-capture') {
+                    errorMsg = 'No microphone found.';
+                } else if (event.error === 'not-allowed') {
+                    errorMsg = 'Microphone access denied.';
+                }
+                document.getElementById('listeningNote').innerText = errorMsg;
+            };
+
+            recognition.onresult = function(event) {
+                let transcript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript;
+                }
+                document.getElementById('questionInput').value = transcript;
+            };
+        }
+
+        // ---------- Speech Synthesis Functions ----------
+        function loadVoices() {
+            availableVoices = synthesis.getVoices();
+            populateVoiceSelector();
+        }
+
+        function populateVoiceSelector() {
+            const voiceSelect = document.getElementById('voiceSelect');
+            if (!voiceSelect) return;
+
+            voiceSelect.innerHTML = '';
+
+            if (availableVoices.length === 0) {
+                voiceSelect.innerHTML = '<option value="">No voices available</option>';
+                return;
+            }
+
+            // Group by language
+            const voicesByLang = {};
+            availableVoices.forEach(voice => {
+                if (!voicesByLang[voice.lang]) voicesByLang[voice.lang] = [];
+                voicesByLang[voice.lang].push(voice);
+            });
+
+            Object.keys(voicesByLang).sort().forEach(lang => {
+                const group = document.createElement('optgroup');
+                group.label = lang;
+                voicesByLang[lang].forEach(voice => {
+                    const option = document.createElement('option');
+                    option.value = voice.voiceURI;
+                    option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' [default]' : ''}`;
+                    group.appendChild(option);
+                });
+                voiceSelect.appendChild(group);
+            });
+
+            // Try to select a voice matching current language
+            const currentLang = document.getElementById('languageSelect').value;
+            const defaultVoice = availableVoices.find(v => v.lang === currentLang && v.default);
+            if (defaultVoice) {
+                voiceSelect.value = defaultVoice.voiceURI;
+                selectedVoice = defaultVoice;
+            } else if (availableVoices.length > 0) {
+                voiceSelect.selectedIndex = 0;
+                selectedVoice = availableVoices[0];
+            }
+
+            document.getElementById('voiceNote').innerText = `${availableVoices.length} voices available`;
+        }
+
+        function changeLanguage() {
+            const lang = document.getElementById('languageSelect').value;
+            currentLanguage = lang;
+            
+            if (recognition) {
+                try {
+                    recognition.lang = lang;
+                    document.getElementById('recognitionNote').innerText = `Language set to ${lang}`;
+                } catch (e) {
+                    document.getElementById('recognitionNote').innerText = 'Language may not be supported';
+                }
+            }
+            
+            // Try to auto-select a voice for this language
+            if (availableVoices.length > 0) {
+                const langVoices = availableVoices.filter(v => v.lang === lang);
+                if (langVoices.length > 0) {
+                    const voiceSelect = document.getElementById('voiceSelect');
+                    voiceSelect.value = langVoices[0].voiceURI;
+                    selectedVoice = langVoices[0];
+                    document.getElementById('voiceNote').innerText = `Found ${langVoices.length} voices for ${lang}`;
+                } else {
+                    document.getElementById('voiceNote').innerText = `No voices for ${lang}. Using default.`;
+                }
+            }
+        }
+
+        function onVoiceChange() {
+            const voiceSelect = document.getElementById('voiceSelect');
+            if (voiceSelect && voiceSelect.value) {
+                selectedVoice = availableVoices.find(v => v.voiceURI === voiceSelect.value);
+            }
+        }
+
+        function toggleVoiceRecognition() {
+            if (!recognition) {
+                alert('Speech recognition not supported.');
+                return;
+            }
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        function speakResponse() {
+            const responseText = document.getElementById('queryResponse').innerText;
+            if (!responseText || responseText === 'Ask a question to get insights') return;
+
+            if (synthesis.speaking) synthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(responseText);
+            if (selectedVoice) utterance.voice = selectedVoice;
+            else utterance.lang = currentLanguage;
+            
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            utterance.onstart = () => {
+                document.getElementById('speakerButton').classList.add('speaking');
+                document.getElementById('listeningNote').innerText = 'Speaking...';
+            };
+            utterance.onend = () => {
+                document.getElementById('speakerButton').classList.remove('speaking');
+                document.getElementById('listeningNote').innerText = '';
+            };
+            utterance.onerror = (e) => {
+                console.error('Speech synthesis error:', e);
+                document.getElementById('speakerButton').classList.remove('speaking');
+                document.getElementById('listeningNote').innerText = 'Speech synthesis error.';
+            };
+            synthesis.speak(utterance);
+            currentUtterance = utterance;
+        }
+
+        // ---------- File Upload ----------
+        document.getElementById('fileInput').addEventListener('change', e => {
+            document.getElementById('fileName').textContent = e.target.files[0]?.name || 'No file selected';
+        });
+
+        function showStatus(msg, type) {
+            const el = document.getElementById('statusMessage');
+            el.style.display = 'block';
+            el.className = `status-message status-${type}`;
+            el.innerHTML = msg;
+            if (type === 'success') setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        async function uploadFile() {
+            const file = document.getElementById('fileInput').files[0];
+            if (!file) return showStatus('Select a file', 'error');
+            const formData = new FormData();
+            formData.append('file', file);
+            showStatus('Uploading...', 'success');
+            try {
+                const res = await fetch('/upload', { method: 'POST', body: formData });
+                const data = await res.json();
+                if (data.error) showStatus('Error: ' + data.error, 'error');
+                else {
+                    showStatus(data.message, 'success');
+                    currentColumns = data.columns || [];
+                    numericColumns = data.numeric_columns || [];
+                    categoricalColumns = data.categorical_columns || [];
+                    totalRows = data.total_rows;
+                    fileTotalRows = data.file_total_rows || totalRows;
+                    document.getElementById('dataInfo').style.display = 'block';
+                    let summary = `<strong>File:</strong> ${data.filename}<br>`;
+                    summary += `<strong>Rows:</strong> ${totalRows}`;
+                    if (fileTotalRows > totalRows) summary += ` (showing first ${totalRows} of ${fileTotalRows})`;
+                    summary += `<br><strong>Columns:</strong> ${data.total_cols}<br>`;
+                    summary += `<strong>Numeric:</strong> ${numericColumns.length}<br>`;
+                    summary += `<strong>Categorical:</strong> ${categoricalColumns.length}`;
+                    document.getElementById('dataSummary').innerHTML = summary;
+                    updateSampleQueries();
+                    updateChartColumns();
+                    displayPreview(data.preview);
+                }
+            } catch (e) {
+                showStatus('Error: ' + e.message, 'error');
+            }
+        }
+
+        function updateSampleQueries() {
+            const container = document.getElementById('sampleQueries');
+            container.innerHTML = '';
+            const base = ['Show first 5 rows', 'Show first 10 rows', 'Count total rows', 'List all columns'];
+            base.forEach(q => {
+                const span = document.createElement('span');
+                span.className = 'sample-query';
+                span.textContent = q;
+                span.onclick = () => document.getElementById('questionInput').value = q;
+                container.appendChild(span);
+            });
+            numericColumns.slice(0,3).forEach(col => {
+                ['average', 'maximum', 'minimum'].forEach(op => {
+                    const span = document.createElement('span');
+                    span.className = 'sample-query';
+                    span.textContent = `${op} of ${col}`;
+                    span.onclick = () => document.getElementById('questionInput').value = span.textContent;
+                    container.appendChild(span);
+                });
+            });
+            categoricalColumns.slice(0,3).forEach(col => {
+                const span = document.createElement('span');
+                span.className = 'sample-query';
+                span.textContent = `distribution of ${col}`;
+                span.onclick = () => document.getElementById('questionInput').value = span.textContent;
+                container.appendChild(span);
+            });
+        }
+
+        function displayPreview(preview) {
+            if (!preview || !preview.length) return;
+            const headers = Object.keys(preview[0]);
+            let html = '<table><thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+            preview.slice(0,10).forEach(row => {
+                html += '<tr>' + headers.map(h => `<td>${row[h] ?? '-'}</td>`).join('') + '</tr>';
+            });
+            html += '</tbody></table>';
+            document.getElementById('dataPreview').innerHTML = html;
+            document.getElementById('dataStats').innerText = `Showing first 10 of ${preview.length} rows`;
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            if (tabName === 'history') loadHistory();
+        }
+
+        function updateChartColumns() {
+            const type = document.getElementById('chartType').value;
+            const xSel = document.getElementById('chartXColumn');
+            const ySel = document.getElementById('chartYColumn');
+            const yGroup = document.getElementById('yColumnGroup');
+            xSel.innerHTML = ''; ySel.innerHTML = '';
+            if (type === 'pie') {
+                yGroup.style.display = 'none';
+                categoricalColumns.forEach(col => {
+                    const opt = document.createElement('option');
+                    opt.value = col; opt.textContent = col;
+                    xSel.appendChild(opt);
+                });
+            } else {
+                yGroup.style.display = 'block';
+                [...categoricalColumns, ...numericColumns].forEach(col => {
+                    const opt = document.createElement('option');
+                    opt.value = col;
+                    opt.textContent = col + (categoricalColumns.includes(col) ? ' (cat)' : ' (num)');
+                    xSel.appendChild(opt);
+                });
+                numericColumns.forEach(col => {
+                    const opt = document.createElement('option');
+                    opt.value = col; opt.textContent = col;
+                    ySel.appendChild(opt);
+                });
+            }
+            if (xSel.options.length) xSel.selectedIndex = 0;
+            if (ySel.options.length) ySel.selectedIndex = 0;
+        }
+
+        async function generateChart() {
+            const type = document.getElementById('chartType').value;
+            const xCol = document.getElementById('chartXColumn').value;
+            const yCol = document.getElementById('chartYColumn').value;
+            document.getElementById('chartError').style.display = 'none';
+            if (!xCol) return showChartError('Select X column');
+            if (type !== 'pie' && !yCol) return showChartError('Select Y column');
+            try {
+                const res = await fetch('/get_chart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chart_type: type, x_column: xCol, y_column: yCol })
+                });
+                const data = await res.json();
+                if (data.error) showChartError(data.error);
+                else {
+                    document.getElementById('chartContainer').innerHTML = `<img src="data:image/png;base64,${data.image}" alt="Chart">`;
+                    let title = type === 'pie' ? `Distribution of ${xCol}` : (type === 'bar' ? `Average ${yCol} by ${xCol}` : `${yCol} Trend`);
+                    document.getElementById('chartTitle').innerText = title;
+                }
+            } catch (e) {
+                showChartError(e.message);
+            }
+        }
+        function showChartError(msg) {
+            const err = document.getElementById('chartError');
+            err.style.display = 'block';
+            err.innerHTML = '❌ ' + msg;
+        }
+
+        async function askQuestion() {
+            const question = document.getElementById('questionInput').value.trim();
+            if (!question) return alert('Enter a question');
+            const btn = document.getElementById('askBtn');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<span class="loading"></span> Thinking...';
+            btn.disabled = true;
+            try {
+                const res = await fetch('/ask_with_sql', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question })
+                });
+                const data = await res.json();
+                if (data.error) {
+                    document.getElementById('queryResponse').innerHTML = '❌ ' + data.error;
+                    document.getElementById('sqlDisplay').style.display = 'none';
+                    document.getElementById('queryResults').style.display = 'none';
+                    document.getElementById('speakerButton').style.display = 'none';
+                } else {
+                    if (data.sql_query) {
+                        document.getElementById('sqlDisplay').style.display = 'block';
+                        document.getElementById('sqlDisplay').innerHTML = '📝 Generated SQL:\n' + data.sql_query;
+                    } else {
+                        document.getElementById('sqlDisplay').style.display = 'none';
+                    }
+                    const responseText = data.response || 'No response';
+                    document.getElementById('queryResponse').innerHTML = responseText;
+                    if (responseText && responseText !== 'Ask a question to get insights') {
+                        document.getElementById('speakerButton').style.display = 'block';
+                    } else {
+                        document.getElementById('speakerButton').style.display = 'none';
+                    }
+                    if (data.rows && data.rows.length) {
+                        displayResults(data.rows, data.columns || []);
+                    } else {
+                        document.getElementById('queryResults').style.display = 'none';
+                    }
+                    loadHistory();
+                }
+            } catch (e) {
+                document.getElementById('queryResponse').innerHTML = '❌ Error: ' + e.message;
+                document.getElementById('speakerButton').style.display = 'none';
+            } finally {
+                btn.innerHTML = orig;
+                btn.disabled = false;
+            }
+        }
+
+        function displayResults(rows, columns) {
+            const container = document.getElementById('queryResults');
+            container.style.display = 'block';
+            if (!rows.length) {
+                container.innerHTML = '<p>No results</p>';
+                return;
+            }
+            const headers = columns.length ? columns : Object.keys(rows[0]);
+            let html = '<table><thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+            rows.forEach(row => {
+                html += '<tr>' + headers.map(h => {
+                    let val = row[h];
+                    if (val == null) val = '-';
+                    else if (typeof val === 'number') val = val.toFixed(2);
+                    return `<td>${val}</td>`;
+                }).join('') + '</tr>';
+            });
+            html += '</tbody></table><p class="text-muted" style="margin-top:0.5rem;">Showing ' + rows.length + ' rows</p>';
+            container.innerHTML = html;
+        }
+
+        async function loadHistory() {
+            try {
+                const res = await fetch('/conversation_history');
+                const data = await res.json();
+                if (data.success) {
+                    const hist = data.conversations || [];
+                    const container = document.getElementById('historyContainer');
+                    if (!hist.length) {
+                        container.innerHTML = '<p class="text-muted">No conversation history.</p>';
+                        return;
+                    }
+                    let html = '';
+                    hist.slice().reverse().forEach(item => {
+                        html += `
+                            <div class="history-item">
+                                <div class="history-question">Q: ${item.question}</div>
+                                <div class="history-response">A: ${item.response}</div>
+                                <div class="history-meta">${item.timestamp} | ${item.row_count || 0} rows</div>
+                                <button class="use-btn" onclick="useQuestion('${item.question.replace(/'/g, "\\'")}')">Use this question</button>
+                            </div>
+                        `;
+                    });
+                    container.innerHTML = html;
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        function useQuestion(q) {
+            document.getElementById('questionInput').value = q;
+            switchTab('query');
+        }
+
+        async function clearData() {
+            if (!confirm('Clear all data and history?')) return;
+            try {
+                const res = await fetch('/clear_data', { method: 'POST' });
+                const data = await res.json();
+                if (data.success) location.reload();
+                else alert('Error: ' + data.error);
+            } catch (e) { alert(e.message); }
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            if (synthesis) {
+                if (synthesis.getVoices().length) {
+                    availableVoices = synthesis.getVoices();
+                    populateVoiceSelector();
+                } else {
+                    synthesis.onvoiceschanged = function() {
+                        availableVoices = synthesis.getVoices();
+                        populateVoiceSelector();
+                    };
+                }
+            } else {
+                document.getElementById('speakerButton').style.display = 'none';
+                document.getElementById('voiceSelect').innerHTML = '<option value="">Speech synthesis not supported</option>';
+            }
+            const defaultLang = document.getElementById('languageSelect').value;
+            currentLanguage = defaultLang;
+            initSpeechRecognition(defaultLang);
+            loadHistory();
+        };
+    </script>
+</body>
+</html>

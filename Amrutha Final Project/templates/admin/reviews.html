@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews and Comments with Ratings</title>
+    
+     <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+    background-image: url("../static/img/pest.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header{
+        display: flex;
+         
+        align-items: center;
+        color:white;
+        margin: 10px 0px 10px 10px;
+        padding: 20px;
+ }
+ #logo{
+    font-size: 1.rem;
+    font-weight: bold;
+
+}
+.nav-links{
+    list-style: none;
+    display: flex;
+    
+    padding-left: 3%;
+}
+ header h4 {
+    text-align: right;
+    padding-right: 2px;
+    font-style: italic;
+    font-weight: bold;
+    margin-right: 35%;
+    font-size: 20px;
+    color:black;
+    text-shadow: 0 0 10px greenyellow ;
+}
+.nav-links li{
+    margin: 0 15px;
+
+}
+.nav-links a{
+    color:black;
+    text-decoration: none;
+    font-size: 20px;
+    transition: 0.3s;
+    font-weight: bold;
+} 
+.nav-links a:hover{
+    text-decoration: blue underline;
+    color:greenyellow;
+    font-weight: bold;
+    scale: 1.1;
+    
+    text-shadow: 0 0 40px greenyellow;
+}
+    .hamburger span{
+        display: block;
+        background-color: aliceblue;
+        width: 25px;
+        height: 3px;
+        margin: 5px;
+        transition: 0.3s;
+    
+    }
+    @media (max_width: 768px){
+        .hamburger{
+            display: flex;
+        }
+    
+    .nav-links{
+        display: none;
+        flex-direction: column;
+        background-color: antiquewhite;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        text-align: left;
+        padding: 10px 0;
+    }
+    .nav-links.active{
+        display: flex;
+    }
+    .nav-links li{
+        margin: 10px 0;
+    }
+    
+    }
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+    
+    }
+    h2{
+    margin-bottom: 10px;
+    color:sandybrown;
+    align-self: center;
+
+}
+form {
+    display: flex;
+    flex-direction:column ;
+}
+label {
+    text-align: left;
+    margin: 4px 0 2px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+header img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+input {
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-bottom: 1px;
+}
+input:hover {
+    background: rgb(241, 234, 234);
+} 
+
+button {
+    background-color: aquamarine;
+    color: black;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.3s;
+    margin-left: 20%;
+    align-self: center;
+    }
+button:hover {
+    background: gainsboro;
+
+}
+footer {
+    background:grey;
+    color: white;
+    text-align: center;
+    padding: 20px ;
+    margin-bottom: 0px;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}
+form button {
+    margin: 30px;
+    padding: auto;
+    align-self: center;
+}
+
+.review-container {
+    background-color: rgba(255, 255, 255, 0.405);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    margin: 0 auto;
+    height: 20%;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.rating {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 60px;
+    color: green;
+    cursor: pointer;
+}
+
+.rating input[type="radio"]:checked ~ label {
+    color: rgb(254, 217, 10);
+}
+
+#reviews-section {
+    margin-top: 30px;
+}
+#reviews-section h3{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.review {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.review h4 {
+    margin: 5px 0;
+    color: #333;
+}
+
+.review p {
+    color: #555;
+}
+img{
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    padding: 5px;
+}
+     </style>
+</head>
+<body>
+    
+<div id="header"></div>
+
+    <div class="review-container">
+        <h2>Leave a Review</h2>
+        <form id="reviewForm">
+            <img src="../static/img/grapes.jpg" alt=""><br>
+
+            <input type="text" id="name" name="name"  placeholder="enter your name .... " required><br>
+            <label for="rating">Rating:</label>
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">*</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">*</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">*</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">*</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">*</label>
+            </div>
+
+            <label for="comment">Comment:</label>
+            <textarea id="comment" name="comment" rows="4" placeholder="Write your comment here..."></textarea>
+
+            <button type="submit">Submit Review</button>
+        </form>
+
+        <div id="reviews-section">
+            <h3>Customer Reviews:</h3>
+            <div id="reviews"></div>
+        </div>
+    </div>
+    <div id="footer"></div>
+<script>
+    document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    
+    const rating = document.querySelector('input[name="rating"]:checked');
+    const comment = document.getElementById('comment').value;
+    if (!rating || comment.trim() === '') {
+        alert("Please select a rating and write a comment.");
+        return;
+    }
+
+    
+    const review = document.createElement('div');
+    review.classList.add('review');
+
+    const reviewTitle = document.createElement('h4');
+    reviewTitle.textContent = `Rating: ${rating.value} Stars`;
+
+    const reviewComment = document.createElement('p');
+    reviewComment.textContent = comment;
+
+    
+    review.appendChild(reviewTitle);
+    review.appendChild(reviewComment);
+
+    
+    document.getElementById('reviews').prepend(review);
+    document.getElementById('reviewForm').reset();
+});
+
+</script>
+    
+</body>
+</html>

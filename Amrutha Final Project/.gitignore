@@ -1,0 +1,6 @@
+myvenv/
+__pycache__/
+*.py[cod]
+.env
+*.tmp
+.vscode/

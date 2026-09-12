@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Image Slideshow</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+
+
+</head>
+
+<style>
+    .section-divider {
+        border: 0;
+        height: 2px;
+        background-color: #333; /* Dark color for the line */
+        margin: 40px 0; /* Space above and below the line */
+        width: 100%; /* Make sure it stretches across the entire width */
+    }
+    
+</style>
+
+<body>
+
+    {% include 'header.html' %}
+    <!-- Hero Section with Slideshow -->
+    <div class="hero-container1">
+        <div class="slideshow-container">
+            <!-- Slides -->
+            <div class="slide fade">
+                <img src="../static/img/slide6.webp" alt="Slide 1">
+            </div>
+            <div class="slide fade">
+                <img src="../static/img/apple.jpg" alt="Slide 2">
+            </div>
+            <div class="slide fade">
+                <img src="../static/img/i6.webp" alt="Slide 3">
+            </div>
+            <div class="slide fade">
+                <img src="../static/img/i3.webp" alt="Slide 3">
+            </div>
+            <!-- Navigation Dots -->
+            <div class="dot-container">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+    <div class="hero1">
+        <i class="fa-solid fa-truck"></i>
+    </div>
+    <hr class="section-divider">
+    <section id="about">
+        <div class="about-content">
+            <h2>Agricultural Products</h2>
+            <p>We connect farmers, suppliers, and buyers to make agriculture trade easier and more efficient.</p>
+            <a href="{{ url_for('products') }}" class="btn">Explore More</a>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+    <!-- Featured Products Section -->
+    <section id="products-section">
+        <h2>Featured Products</h2>
+        <div class="product-container" id="product-container">
+            <!-- Products will be loaded here dynamically -->
+        </div>
+
+        <!-- Cards Section -->
+        <section class="cards">
+            <div class="card">
+                <img src="../static/img/rice.jpg" alt="Rice" class="card-img">
+                <h3>Rice</h3>
+                <p>High-quality rice, sourced from local farms.</p>
+            </div>
+            <div class="card">
+                <img src="../static/img/wheat.jpg" alt="Wheat" class="card-img">
+                <h3>Wheat</h3>
+                <p>Organic wheat for your next harvest.</p>
+            </div>
+            <div class="card">
+                <img src="../static/img/corn.jpg" alt="Corn" class="card-img">
+                <h3>Corn</h3>
+                <p>Fresh corn from the best agricultural producers.</p>
+            </div>
+        </section>
+
+    </section>
+    <hr class="section-divider">
+    <!-- Services Section with Cards -->
+    <section id="services">
+        <h1>Our Services</h1>
+        <div class="service-cards">
+            <!-- Service Card 1 -->
+            <div class="service-card">
+                <img src="../static/img/croptrade.jpg" alt="Crop Trading">
+                <h3>Crop Trading</h3>
+                <p>Buy and sell a variety of crops online with ease and security.</p>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-card">
+                <img src="../static/img/transport.jpg" alt="Logistics & Transportation">
+                <h3>Logistics & Transportation</h3>
+                <p>Reliable transportation for your agricultural products with real-time tracking.</p>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="service-card">
+                <img src="../static/img/consulating.jpg" alt="Consulting Services">
+                <h3>Consulting Services</h3>
+                <p>Expert advice on farming practices, market trends, and sustainable solutions.</p>
+            </div>
+
+            <!-- Service Card 4 -->
+            <div class="service-card">
+                <img src="../static/img/equ.jpg" alt="Farm Equipment Rentals">
+                <h3>Farm Equipment Rentals</h3>
+                <p>Rent high-quality farm equipment like tractors and harvesters at affordable rates.</p>
+            </div>
+        </div>
+    </section>
+    <hr class="section-divider">
+    <section id="main-content">
+        <div class="card1" id="about-card">
+            <div class="img">
+                <img src="../static/img/about us.png" alt="">
+            </div>
+            <h3>About Us</h3>
+            <p>Learn more about our company and services in agriculture.</p>
+            <button id="explore-btn" onclick="window.location.href='{{ url_for('about')}}'">aclick here</button>
+            <!--<button id="explore-btn">click here</button>-->
+        </div>
+
+        <div class="card1" id="blogs-card">
+            <div class="img">
+                <img src="../static/img/blog.png" alt="">
+            </div>
+            <h3>Blogs</h3>
+            <p>Read our latest articles on agriculture trends and tips.</p>
+            <button id="explore-btn" onclick="window.location.href='{{ url_for('blog')}}'">aclick here</button>
+        </div>
+
+        <div class="card1" id="fertilizers-card">
+            <div class="img">
+                <img src="../static/img/fertiliers.png" alt="">
+            </div>
+            <h3>Fertilizers</h3>
+            <p>Explore our range of fertilizers to boost your crops.</p>
+            <button id="explore-btn">click here</button>
+        </div>
+
+        <div class="card1" id="contact-card">
+            <div class="img">
+                <img src="../static/img/contact us.png" alt="">
+            </div>
+            <h3>Contact Us</h3>
+            <p>Get in touch with us for inquiries or support.</p>
+             <button id="explore-btn" onclick="window.location.href='{{ url_for('contact')}}'">aclick here</button>
+            <!--<button id="explore-btn">click here</button>-->
+        </div>
+        </div>
+
+    </section>
+            <div>
+            <section id="productFormSection">
+            <h2>Add New Agricultural Product</h2>
+             <form id="productForm">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
+
+            <label for="productDescription">Description:</label>
+            <textarea id="productDescription" name="productDescription" placeholder="Enter product description" required></textarea>
+
+            <label for="productPrice">Price (₹):</label>
+            <input type="number" id="productPrice" name="productPrice" placeholder="Enter product price" required>
+
+            <label for="productImage">Product Image:</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+
+            <button type="submit">Add Product</button>
+        </form>
+             <!--<button id="explore-btn" onclick="window.location.href='{{ url_for('contact')}}'">aclick here</button>-->
+            <!--<button id="explore-btn">click here</button>-->
+        </div>
+    </section>
+    
+    <!-- Product Display Section -->
+    <section id="productDisplaySection">
+        <h2>Featured Agricultural Products</h2>
+        <div id="productList" class="product-list">
+            <!-- Products will be dynamically added here -->
+        </div>
+        </section>
+
+    {% include 'footer.html' %}
+
+    <script src="../static/js/footer.js"></script>
+
+
+    <script type="module" src="../static/js/script1.js"></script>
+
+    <script src="../static/js/s.js"></script>
+        <script>
+        // Handle form submission
+document.getElementById("productForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent default form submission
+
+    // Get form data
+    const productName = document.getElementById("productName").value;
+    const productDescription = document.getElementById("productDescription").value;
+    const productPrice = document.getElementById("productPrice").value;
+    const productImage = document.getElementById("productImage").files[0];
+
+    // Validate the form fields
+    if (!productName || !productDescription || !productPrice || !productImage) {
+        alert("All fields are required!");
+        return;
+    }
+
+    // Create a new product object
+    const newProduct = {
+        name: productName,
+        description: productDescription,
+        price: parseFloat(productPrice).toFixed(2),  // Format price to 2 decimal points
+        imageURL: URL.createObjectURL(productImage), // Use a blob URL for the image
+    };
+
+    // Add the product to the page
+    addProductToPage(newProduct);
+
+    // Reset the form
+    document.getElementById("productForm").reset();
+});
+
+// Function to dynamically add the product to the page
+function addProductToPage(product) {
+    // Get the product list container
+    const productList = document.getElementById("productList");
+
+    // Create a new product item
+    const productItem = document.createElement("div");
+    productItem.classList.add("product-item");
+
+    // Add product content to the item
+    productItem.innerHTML = `
+        <img src="${product.imageURL}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p class="price">₹${product.price}</p>
+    `;
+
+    // Append the new product item to the product list
+    productList.appendChild(productItem);
+}
+
+    </script>
+
+
+    <script>
+        let slideIndex = 0; // Start from the first slide
+
+        // Function to show slides
+        function showSlides() {
+            let slides = document.querySelectorAll('.slide');  // All slides
+            let dots = document.querySelectorAll('.dot');  // All dots
+
+            // Hide all slides
+            slides.forEach(slide => slide.style.display = "none");
+
+            // Remove "active" class from all dots
+            dots.forEach(dot => dot.classList.remove("active"));
+
+            // Increment slideIndex
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 } // Loop back to the first slide
+
+            // Show the current slide and add the active class to the corresponding dot
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].classList.add("active");
+
+            // Set the timeout to change slides every 3 seconds
+            setTimeout(showSlides, 3000);
+        }
+
+        // Initialize the slideshow
+        showSlides();
+
+    </script>
+</body>
+
+</html>

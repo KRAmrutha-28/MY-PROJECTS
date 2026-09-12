@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Agricultural Products</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        /* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page and header styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Styling for the product form */
+#productFormSection {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input[type="text"], input[type="number"], textarea, input[type="file"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the product display section */
+#productDisplaySection {
+    padding: 20px;
+    background-color: white;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.product-item h3 {
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+.product-item p {
+    color: #555;
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.product-item .price {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Our Agricultural Products Store</h1>
+    </header>
+
+    <!-- Product Form -->
+    <section id="productFormSection">
+        <h2>Add New Agricultural Product</h2>
+        <form id="productForm">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
+
+            <label for="productDescription">Description:</label>
+            <textarea id="productDescription" name="productDescription" placeholder="Enter product description" required></textarea>
+
+            <label for="productPrice">Price (₹):</label>
+            <input type="number" id="productPrice" name="productPrice" placeholder="Enter product price" required>
+
+            <label for="productImage">Product Image:</label>
+            <input type="file" id="productImage" name="productImage" accept="image/*" required>
+
+            <button type="submit">Add Product</button>
+        </form>
+    </section>
+
+    <!-- Product Display Section -->
+    <section id="productDisplaySection">
+        <h2>Featured Agricultural Products</h2>
+        <div id="productList" class="product-list">
+            <!-- Products will be dynamically added here -->
+        </div>
+    </section>
+    <script>
+        // Handle form submission
+document.getElementById("productForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent default form submission
+
+    // Get form data
+    const productName = document.getElementById("productName").value;
+    const productDescription = document.getElementById("productDescription").value;
+    const productPrice = document.getElementById("productPrice").value;
+    const productImage = document.getElementById("productImage").files[0];
+
+    // Validate the form fields
+    if (!productName || !productDescription || !productPrice || !productImage) {
+        alert("All fields are required!");
+        return;
+    }
+
+    // Create a new product object
+    const newProduct = {
+        name: productName,
+        description: productDescription,
+        price: parseFloat(productPrice).toFixed(2),  // Format price to 2 decimal points
+        imageURL: URL.createObjectURL(productImage), // Use a blob URL for the image
+    };
+
+    // Add the product to the page
+    addProductToPage(newProduct);
+
+    // Reset the form
+    document.getElementById("productForm").reset();
+});
+
+// Function to dynamically add the product to the page
+function addProductToPage(product) {
+    // Get the product list container
+    const productList = document.getElementById("productList");
+
+    // Create a new product item
+    const productItem = document.createElement("div");
+    productItem.classList.add("product-item");
+
+    // Add product content to the item
+    productItem.innerHTML = `
+        <img src="${product.imageURL}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p class="price">₹${product.price}</p>
+    `;
+
+    // Append the new product item to the product list
+    productList.appendChild(productItem);
+}
+
+    </script>
+
+    <!-- <script src="script.js"></script> -->
+
+</body>
+</html>

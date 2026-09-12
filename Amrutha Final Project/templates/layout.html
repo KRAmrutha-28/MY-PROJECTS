@@ -1,0 +1,50 @@
+<!-- templates/layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+</head>
+<style>
+    .service-card {
+        background-color: #fff;
+        padding: 20px;
+        text-align: center;
+        /* Center text and image horizontally */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center content vertically */
+        justify-content: center;
+    }
+
+    .service-card img {
+        width: 500px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+</style>
+{% block extra_styles %}{% endblock %}
+
+<body>
+
+    {% include 'header.html' %}
+    {% include 'flash.html' %}
+
+    <main>
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

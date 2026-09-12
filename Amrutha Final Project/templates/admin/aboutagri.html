@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* About Agriculture Trade Section */
+.about-agriculture-trade {
+  background-color: #eaf5e6;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.about-agriculture-trade h2 {
+  color: #4CAF50;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.about-agriculture-trade p {
+  color: #333;
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: oblique;
+}
+
+.about-agriculture-trade ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.about-agriculture-trade ul li {
+  font-size: 1.1em;
+  color: #555;
+  margin: 10px 0;
+}
+
+.about-agriculture-trade h3 {
+  color: #333;
+  font-size: 2em;
+  margin-top: 30px;
+}
+.about-image {
+    /* padding: 20px; */
+  width: 70%;
+  padding: 20px;
+  text-align: center;
+  display: flex; 
+}
+
+.about-image img {
+
+    display: flex;
+  max-width: 500px;
+  /* height: 60%; */
+  border-radius: 8px;
+   max-height: 300px; 
+  object-fit: cover;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Animation on Hover */
+.animated-image:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+.a-img{
+    display: flex;
+    width: 70%;
+    height: 70%;
+    
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-text, .about-image {
+    width: 100%;
+  }
+}
+.footer-bottom {
+    margin-bottom: 0;
+    text-align: center;
+    /* margin-top: 30px; */
+    font-size: 0.9rem;
+    background: #28a745;
+     /* height: 50%; */
+     padding: 10px;
+    
+}
+
+    </style>
+</head>
+<body>
+  <div id="header"></div>
+
+    <section class="about-agriculture-trade">
+        <div class="container">
+          <h2>About Agriculture Trade</h2>
+          
+          <p>Connecting the World’s Farmers to Global Markets</p>
+      
+          <p>At <strong>[Your Company Name]</strong>, our mission is simple: to ensure that high-quality agricultural products reach consumers everywhere, empowering farmers, promoting sustainability, and supporting fair trade practices.</p>
+      
+          <h3>What We Do</h3>
+          <ul>
+            <li><strong>Product Sourcing</strong>: Connecting buyers and sellers with top-quality agricultural products.</li>
+            <li><strong>Logistics Management</strong>: Ensuring timely delivery via efficient logistics.</li>
+            <li><strong>Quality Control</strong>: Ensuring products meet international standards.</li>
+          </ul>
+      
+          <h3>Why Agriculture Trade Matters</h3>
+          <ul>
+            <li><strong>Ensuring Food Security</strong>: Providing access to essential food and raw materials worldwide.</li>
+            <li><strong>Economic Growth</strong>: Supporting national economies and boosting GDP.</li>
+            <li><strong>Cultural Exchange</strong>: Bringing a wide variety of products from different cultures to global markets.</li>
+            <li><strong>Sustainability</strong>: Promoting eco-friendly farming practices and ethical sourcing.</li>
+          </ul>
+      
+          <h3>Our Values</h3>
+          <ul>
+            <li><strong>Integrity</strong>: Transparency and fairness in every aspect of trade.</li>
+            <li><strong>Sustainability</strong>: Prioritizing eco-friendly practices in agriculture.</li>
+            <li><strong>Innovation</strong>: Constantly improving our practices and technology.</li>
+            <li><strong>Collaboration</strong>: Building long-term, successful relationships.</li>
+          </ul>
+      
+          <h3>Our Impact</h3>
+          <p>With the growing demand for organic, fair-trade, and eco-conscious products, agriculture trade is evolving. At <strong>[Your Company Name]</strong>, we focus on promoting these values, helping farmers adopt sustainable practices, and bringing quality, ethical products to market.</p>
+      
+          <h3>Join Us in Creating a Better Future for Agriculture</h3>
+          <p>We invite you to join us on our journey—whether as a partner, supplier, or consumer. Together, we can build a more connected, fair, and sustainable agricultural industry for generations to come.</p>
+        </div>
+        <div class="about-image">
+            <img src="../static/img/p1.jpg" alt="Farm Field" class="about-image">
+            <img src="../static/img/p7.jpg" alt="Harvest" class="about-image">
+          </div>
+          <div class="about-image">
+            <img src="../static/img/p3.jpg" alt="Farm Field" class="about-image">
+            <img src="../static/img/p2.jpg" alt="Harvest" class="about-image">
+          </div>
+          <div class="about-image">
+            <img src="../static/img/p12.jpg" alt="Farm Field" class="about-image">
+            <img src="../static/img/p11.jpg" alt="Harvest" class="about-image">
+          </div>
+          <div class="about-image">
+            <img src="../static/img/p4.jpg" alt="Farm Field" class="about-image">
+            <img src="../static/img/p8.png" alt="Farm Field" class="about-image">
+          </div>
+
+      </section>
+      
+      <div class="footer-bottom"> 
+        <p>&copy; 2025 Agricultural Trade | All Rights Reserved</p>
+        </div>
+
+  <!-- <div id="footer"></div> -->
+  <script src="../static/js/footer.js"></script>
+  <script>
+    // JavaScript for Image Hover Effect
+const aboutImage = document.getElementById('aboutImage');
+
+// Add event listener to the image for hover effect
+aboutImage.addEventListener('mouseover', () => {
+  aboutImage.style.transform = 'scale(1.1)';
+});
+
+aboutImage.addEventListener('mouseout', () => {
+  aboutImage.style.transform = 'scale(1)';
+});
+
+
+  </script>
+  <script type="module" src="../static/js/script1.js"></script>
+  <script src="../static/js/s.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block title %}Agriculture Trade Login{% endblock %}
+
+{% block content %}
+<style>
+    .login-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        margin: 50px auto;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #4CAF50;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    label {
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #error-message {
+        font-size: 14px;
+        margin-top: 10px;
+        color: red;
+    }
+</style>
+
+<div class="login-container">
+    <!-- {% include 'flash.html' %} -->
+    <h2>Agriculture Trade Login</h2>
+    <form id="loginForm" method="POST" action="/user/login">
+        <div class="input-group">
+            <label for="username">Email ID:</label>
+            <input type="text" id="username" name="email_id" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+            <button type="submit">Login</button>
+        </div>
+        <div id="error-message" style="display: none;"></div>
+    </form>
+</div>
+
+<script src="../static/js/footer.js"></script> 
+<script type="module" src="../static/js/script1.js"></script> 
+<script src="../static/js/s.js"></script>
+{% endblock %}

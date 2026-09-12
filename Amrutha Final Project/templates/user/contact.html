@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}Contact Us - AgriTrade{% endblock %}
+
+{% block content %}
+<section id="contact" style="background-color: #fff; padding: 40px 20px; margin: 20px; border-radius: 10px;">
+    <h2 style="text-align: center; color: #4CAF50;">Get in Touch</h2>
+    <p style="text-align: center; max-width: 800px; margin: 10px auto 30px; font-size: 1.1em; color: #555;">
+        We'd love to hear from you! Whether you have a question about our services, pricing, or anything else, our team is ready to answer all your questions.
+    </p>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 30px;">
+        <!-- Contact Form -->
+        <form method="POST" action="/message" style="flex: 1; min-width: 300px; max-width: 500px;">
+            <div style="margin-bottom: 15px;">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 10px; border-radius: 5px;"></textarea>
+            </div>
+            <button type="submit" id="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Send Message</button>
+        </form>
+
+        <!-- Contact Info -->
+        <div style="flex: 1; min-width: 250px; max-width: 400px;">
+            <h3 style="margin-bottom: 10px;">Contact Information</h3>
+            <p><strong>Email:</strong> support@agritrade.com</p>
+            <p><strong>Phone:</strong> +91-7483530782</p>
+            <p><strong>Address:</strong> AgriTrade HQ, Green Valley, Chikkaballapura, Karnataka, India</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

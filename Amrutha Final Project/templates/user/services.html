@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home - AgriTrade{% endblock %}
+
+{% block content %}
+<!-- Home Section -->
+<section id="home">
+    <h2>Welcome to AgriTrade</h2>
+    <p>Your trusted partner in agricultural trade. Buy, sell, and connect with farmers and suppliers globally.</p>
+</section>
+
+<!-- Services Section with Cards -->
+<section id="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+        <!-- Service Card 1 -->
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='img/crop.jpg') }}" alt="Crop Trading">
+            <h3>Crop Trading</h3>
+            <p>Buy and sell a variety of crops online with ease and security.
+                Involves real-time buying and selling of crops.<br>
+                Prices are influenced by local supply-demand, transportation, and storage capacity.<br>
+                Common in local agri-markets or through grain elevators and cooperatives.
+            </p>
+        </div>
+
+        <!-- Service Card 2 -->
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='img/l&t.jpg') }}" alt="Logistics & Transportation">
+            <h3>Logistics & Transportation</h3>
+            <p>Reliable transportation for your agricultural products with real-time tracking.<br>
+                Crops are harvested and may be stored temporarily on the farm.<br>
+                Equipment like combines, dryers, and silos are used.</p>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='img/cs.jpg') }}" alt="Consulting Services">
+            <h3>Consulting Services</h3>
+            <p>Expert advice on farming practices, market trends, and sustainable solutions.<br>
+            These services help businesses, farmers, exporters, importers, and investors optimize their operations,<br>
+             increase profitability, and manage risk in the complex world of agriculture.</p>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='img/fer.jpg') }}" alt="Farm Equipment Rentals">
+            <h3>Farm Equipment Rentals</h3>
+            <p>Rent high-quality farm equipment like tractors and harvesters at affordable rates.<br>
+            Renting farm equipment allows farmers to access modern machinery without the high upfront costs of purchasing. <br>
+            It’s especially useful for smallholder farmers, seasonal tasks, or trialing equipment before purchase.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

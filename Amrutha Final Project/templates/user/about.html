@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}About Us - AgriTrade{% endblock %}
+
+{% block content %}
+<section id="about" style="background-color: #fff; padding: 40px 20px; margin: 20px; border-radius: 10px;">
+    <h2 style="text-align: center; color: #4CAF50;">About AgriTrade</h2>
+    <p style="text-align: center; max-width: 800px; margin: 20px auto; font-size: 1.1em; color: #555;">
+        AgriTrade is a comprehensive agricultural marketplace connecting farmers, traders, logistics providers, 
+        and consultants in one seamless platform. Our mission is to empower the agriculture community with 
+        digital tools to trade efficiently, access expert guidance, and utilize modern resources.
+    </p>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+        <div style="max-width: 300px; text-align: center;">
+            <img src="{{ url_for('static', filename='img/mission.jpg') }}" alt="Our Mission" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+            <h3 style="margin-top: 15px;">Our Mission</h3>
+            <p style="color: #777;">To modernize agriculture by making trade, transportation, and consulting accessible to all farmers and stakeholders.</p>
+        </div>
+        <div style="max-width: 300px; text-align: center;">
+            <img src="{{ url_for('static', filename='img/vision.jpg') }}" alt="Our Vision" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+            <h3 style="margin-top: 15px;">Our Vision</h3>
+            <p style="color: #777;">To be the most trusted digital hub for agricultural trade and innovation across the globe.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

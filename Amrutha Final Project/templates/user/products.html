@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Products </title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        h1{
+            text-align: center;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+       /* .product {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }*/
+
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: 200px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: 50%;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <!-- <header>
+        <h1>Agriculture Products Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="#fruits">Fruits</a></li>
+                <li><a href="#vegetables">Vegetables</a></li>
+                <li><a href="#flowers">Flowers</a></li>
+                <li><a href="#grains">Grains</a></li>
+                <li><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <div><h1>AGRI PRODUCTS</h1></div>
+
+    <section id="fruits">
+        <h2>Fruits</h2>
+        <div class="product-container">
+            <div class="product">
+                <img src="/static/img/apple.jpg" alt="Apple">
+                <h3>Apple</h3>
+                <p>₹2.99</p>
+                <button class="add-to-cart" onclick="addToCart('Apple', 2.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Banana', 1.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/banana.jpg" alt="Banana">
+                <h3>Banana</h3>
+                <p>₹1.99</p>
+                <button class="add-to-cart" onclick="addToCart('Banana', 1.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Banana', 1.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/orange.png" alt="Orange">
+                <h3>Orange</h3>
+                <p>₹3.49</p>
+                <button class="add-to-cart" onclick="addToCart('Orange', 3.49)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Orange', 3.49)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/grapes.jpg" alt="Grapes">
+                <h3>Grapes</h3>
+                <p>₹4.99</p>
+                <button class="add-to-cart" onclick="addToCart('Grapes', 4.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Grapes', 4.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/watermelon.jpg" alt="Watermelon">
+                <h3>Watermelon</h3>
+                <p>₹5.99</p>
+                <button class="add-to-cart" onclick="addToCart('Watermelon', 5.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Watermelon', 5.99)">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="vegetables">
+        <h2>Vegetables</h2>
+        <div class="product-container">
+            <!-- Repeat the same structure for vegetables -->
+            <!-- Example -->
+            <div class="product">
+                <img src="/static/img/carrot.jpg" alt="Carrot">
+                <h3>Carrot</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/potato.jpg" alt="potato">
+                <h3>potato</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/beans.jpg" alt="beans">
+                <h3>beans</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/onion.jpg" alt="onion">
+                <h3>onion</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/beetroot.jpg" alt="betroot">
+                <h3>betroot</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <!-- Add other vegetables in the same structure -->
+        </div>
+    </section>
+
+    <section id="flowers">
+        <h2>Flowers</h2>
+        <div class="product-container">
+            <!-- Repeat the same structure for flowers -->
+            <!-- Example -->
+            <div class="product">
+                <img src="/static/img/rose.jpg!d" alt="rose">
+                <h3>rose</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/fresh_tulips-wide3.jpg" alt="tulip">
+                <h3>tulip</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/lily.jpg" alt="lily">
+                <h3>lily</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/orichd.webp" alt="orchid">
+                <h3>orchid</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/sunflower-pictures-3.jpg" alt="sunflower">
+                <h3>sunflower</h3>
+                <p>₹0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Carrot', 0.99)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Carrot', 0.99)">Buy Now</button>
+            </div>
+            <!-- Add other flowers in the same structure -->
+        </div>
+    </section>
+
+    <section id="grains">
+        <h2>Grains</h2>
+        <div class="product-container">
+            <!-- Repeat the same structure for grains -->
+            <!-- Example -->
+            <div class="product">
+                <img src="/static/img/rice.jpg" alt="Rice">
+                <h3>Rice</h3>
+                <p>₹3.49</p>
+                <button class="add-to-cart" onclick="addToCart('Rice', 3.49)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Rice', 3.49)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/wheat.jpg" alt="wheat">
+                <h3>wheat</h3>
+                <p>₹3.49</p>
+                <button class="add-to-cart" onclick="addToCart('Rice', 3.49)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Rice', 3.49)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/barly.webp" alt="barley">
+                <h3>barley</h3>
+                <p>₹3.49</p>
+                <button class="add-to-cart" onclick="addToCart('Rice', 3.49)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Rice', 3.49)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/corn.jpg" alt="corn">
+                <h3>corn</h3>
+                <p>₹3.49</p>
+                <button class="add-to-cart" onclick="addToCart('Rice', 3.49)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Rice', 3.49)">Buy Now</button>
+            </div>
+            <div class="product">
+                <img src="/static/img/oats.avif" alt="oats">
+                <h3>oats</h3>
+                <p>₹3.49</p>
+                <button class="add-to-cart" onclick="addToCart('Rice', 3.49)">Add to Cart</button>
+                <button class="buy" onclick="buyProduct('Rice', 3.49)">Buy Now</button>
+            </div>
+            <!-- Add other grains in the same structure -->
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script>
+        <!-- let cart = [];
+        let cartCount = 0;
+
+        function addToCart(productName, price) {
+            cart.push({ productName, price });
+            cartCount++;
+            document.getElementById("cart-count").innerText = cartCount;
+            alert(${ productName } has been added to your cart.);
+        }
+
+        function buyProduct(productName, price) {
+            // For simplicity, just alerting the purchase, but in a real case, it could take you to a checkout page
+            alert(You have bought ${ productName } for ₹${ price }. Thank you for your purchase!);
+        } -->
+
+
+        function buyProduct(name, price) {
+            let purchases = JSON.parse(localStorage.getItem("purchases")) || [];
+            purchases.push({ name: name, price: price });
+            localStorage.setItem("purchases", JSON.stringify(purchases));
+            alert(`${name} purchased! Visit your profile to view.`);
+            window.location.href = "myprofile.html";  // redirect to profile
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{% with message=get_flashed_messages(with_categories=true)%}
+{% if message %}
+<ul>
+    {% for category,message in message %}
+    <li class="alert alert-{{category}}">{{message}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<style>
+    .alert{
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-size: 16px;
+        color: white;
+    }
+    .alert-success{
+        background-color: greenyellow;
+    }
+    .alert-danger{
+        background-color: red;
+    }
+    .alert-info{
+        background-color: #2196f3;
+    }
+    .alert-warning{
+        background-color: #ff9800;
+    }
+    .alert ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .alert li{
+        margin: 5px 0;
+    }
+</style>

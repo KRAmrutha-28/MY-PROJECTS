@@ -1,0 +1,175 @@
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: black;
+        margin: 3px;
+        padding: 20px;
+        background-color: #28a745;
+    }
+
+    #logo {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        padding-left: 3%;
+    }
+
+    header h4 {
+        text-align: right;
+        padding-right: 2px;
+        font-style: italic;
+        font-weight: bold;
+        margin-right: 35%;
+        font-size: 20px;
+        color: black;
+        text-shadow: 0 0 10px greenyellow;
+    }
+
+    .nav-links li {
+        margin: 0 15px;
+    }
+
+    .nav-links a {
+        color: black;
+        text-decoration: none;
+        font-size: 20px;
+        transition: 0.3s;
+        font-weight: bold;
+    }
+
+    .nav-links a:hover {
+        text-decoration: blue underline;
+        color: greenyellow;
+        scale: 1.1;
+        text-shadow: 0 0 40px greenyellow;
+    }
+
+    header img {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        box-shadow: 0 0 40px green;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    /* Profile dropdown */
+    .profile-menu {
+        position: relative;
+        display: inline-block;
+    }
+
+    .profile-icon {
+        cursor: pointer;
+        font-size: 28px;
+        color: white;
+        padding: 10px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #333;
+        min-width: 160px;
+        z-index: 1;
+        border-radius: 5px;
+    }
+
+    .dropdown-content a {
+        color: white;
+        padding: 10px 16px;
+        text-decoration: none;
+        display: block;
+        font-weight: bold;
+    }
+
+    .dropdown-content a:hover {
+        background-color: greenyellow;
+        color: black;
+    }
+
+    .profile-menu:hover .dropdown-content {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .hamburger {
+            display: block;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 8px;
+        }
+
+        h4 {
+            font-size: 10px;
+        }
+
+        header {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 10px 0;
+        }
+    }
+</style>
+
+<header>
+    <div id="logo"><img src="../static/img/logo.jpg" alt=""></div>
+    <h4>Agricultural Trade</h4>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">HOME</a></li>
+            <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+            <li><a href="{{ url_for('services') }}">SERVICE</a></li>
+            <li><a href="{{ url_for('contact')}}">CONTACT</a></li>
+            {% if not current_user.is_authenticated %}
+                <li><a href="{{ url_for('login_route') }}">SIGNIN</a></li>
+                <li><a href="{{ url_for('register') }}">SIGNUP</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% if current_user.is_authenticated %}
+    <div class="profile-menu">
+        <div class="profile-icon">&#128100;</div> Welcome, {{ current_user.email_id }}
+        <div class="dropdown-content">
+            <a href="{{ url_for('profile') }}">My Profile</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+</header>
+
+<script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+    }
+</script>

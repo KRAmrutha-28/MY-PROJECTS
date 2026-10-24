@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Transport</title>
+
+<style>
+body {font-family:Poppins;background:#f5f7fa;margin:0;}
+.navbar {background:#0f172a;color:white;padding:18px 40px;display:flex;justify-content:space-between;}
+.wrapper {display:flex;justify-content:center;padding:40px;}
+.form-container {background:white;padding:30px;width:650px;border-radius:16px;}
+.form-row {display:flex;gap:10px;}
+input {width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;}
+button {width:100%;padding:12px;background:#0072ff;color:white;border:none;border-radius:8px;}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+<h2>Admin Panel</h2>
+<a href="/admindashboard/">⬅ Back</a>
+</header>
+
+<div class="wrapper">
+<div class="form-container">
+
+<h2>Update Transport 🚌</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input name="route_name" value="{{ t.route_name }}">
+<input name="bus_no" value="{{ t.bus_no }}">
+
+<div class="form-row">
+<input name="seats" value="{{ t.seats }}">
+<input name="available" value="{{ t.available }}">
+</div>
+
+<input name="fee" value="{{ t.fee }}">
+
+<div class="form-row">
+<input name="pickup_time" value="{{ t.pickup_time }}">
+<input name="drop_time" value="{{ t.drop_time }}">
+</div>
+
+<input name="driver_name" value="{{ t.driver_name }}">
+<input name="driver_phone" value="{{ t.driver_phone }}">
+<input name="status" value="{{ t.status }}">
+
+<input type="file" name="image">
+
+<button type="submit">Update Transport</button>
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>

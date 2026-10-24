@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Faculty</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/faculty.css' %}">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2 class="logo">The Chanakya University</h2>
+    <nav>
+        <a href="/">Home</a>
+        <a href="#faculty">Faculty</a>
+    </nav>
+</header>
+
+<!-- HEADER -->
+<section class="header-section">
+    <h1 data-aos="fade-up">Meet Our Expert Faculty 👨‍🏫</h1>
+    <p data-aos="fade-up">Learn from industry professionals & experienced mentors</p>
+</section>
+
+<!-- FACULTY GRID -->
+<section id="faculty">
+
+<div class="faculty-grid">
+
+{% for f in faculty %}
+
+<div class="faculty-card" data-aos="fade-up">
+
+    <!-- IMAGE FIX -->
+    <div class="faculty-img">
+        {% if f.image %}
+            <img src="{{ f.image.url }}" alt="{{ f.name }}">
+        {% else %}
+            <img src="https://randomuser.me/api/portraits/men/32.jpg">
+        {% endif %}
+    </div>
+
+    <div class="faculty-content">
+        <h3>{{ f.name }}</h3>
+        <p class="designation">{{ f.designation }}</p>
+
+        <p class="bio">{{ f.bio|default:"No bio available"|truncatewords:20 }}</p>
+
+        <!-- EXTRA DETAILS -->
+        <div class="faculty-info">
+            <span>🎓 {{ f.qualification }}</span>
+            <span>💼 {{ f.experience }}</span>
+            <span>🧠 {{ f.specialization }}</span>
+            <span>📍 {{ f.location }}</span>
+        </div>
+
+        <!-- NEW ROW -->
+        <div class="faculty-extra">
+            <span>📧 {{ f.email }}</span>
+            <span>📞 {{ f.phone }}</span>
+            <span>📅 {{ f.joining_date }}</span>
+            <span class="status">{{ f.availability }}</span>
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+<p style="text-align:center;">No Faculty Available</p>
+{% endfor %}
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2026 The Chanakya University | Designed by Deeven 🚀</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:1000});</script>
+
+</body>
+</html>

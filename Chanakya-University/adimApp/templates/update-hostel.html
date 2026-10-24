@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Hostel</title>
+
+<style>
+body {font-family:Poppins;background:#f5f7fa;margin:0;}
+.navbar {background:#0f172a;color:white;padding:18px 40px;display:flex;justify-content:space-between;}
+.wrapper {display:flex;justify-content:center;padding:40px;}
+.form-container {background:white;padding:30px;width:650px;border-radius:16px;}
+.form-row {display:flex;gap:10px;}
+input,textarea,select {width:100%;padding:12px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;}
+button {width:100%;padding:12px;background:#0072ff;color:white;border:none;border-radius:8px;}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+<h2>Admin Panel</h2>
+<a href="/admindashboard/">⬅ Back</a>
+</header>
+
+<div class="wrapper">
+<div class="form-container">
+
+<h2>Update Hostel 🏠</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input name="hostel_name" value="{{ h.hostel_name }}">
+
+<select name="hostel_type">
+<option>{{ h.hostel_type }}</option>
+<option>Boys</option>
+<option>Girls</option>
+</select>
+
+<div class="form-row">
+<input name="room_type" value="{{ h.room_type }}">
+<input name="total_rooms" value="{{ h.total_rooms }}">
+</div>
+
+<div class="form-row">
+<input name="capacity" value="{{ h.capacity }}">
+<input name="available" value="{{ h.available }}">
+</div>
+
+<input name="fee" value="{{ h.fee }}">
+
+<textarea name="facilities">{{ h.facilities }}</textarea>
+
+<div class="form-row">
+<input name="security" value="{{ h.security }}">
+<input name="curfew_time" value="{{ h.curfew_time }}">
+</div>
+
+<input name="location" value="{{ h.location }}">
+
+<button type="submit">Update Hostel</button>
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Course</title>
+
+<link rel="stylesheet" href="/static/css/add-course.css">
+
+<style>
+
+    /* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #dfe9f3);
+}
+
+.navbar {
+    background: #0f172a;
+    color: white;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* GRID FORM */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* FULL WIDTH */
+.form-grid textarea,
+.form-grid .file-input,
+.form-grid button,
+.form-grid label {
+    grid-column: span 2;
+}
+
+/* INPUT */
+input, textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* INPUT FOCUS */
+input:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0,123,255,0.3);
+}
+
+/* TEXTAREA */
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* FILE */
+.file-input {
+    padding: 8px;
+}
+
+/* BUTTON */
+.btn {
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* BUTTON HOVER */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+<header class="navbar">
+    <h2>Admin Panel</h2>
+    <a href="/admindashboard/">⬅ Back to Dashboard</a>
+</header>
+
+<div class="container">
+
+    <h2>Add Course 🚀</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="form-grid">
+    {% csrf_token %}
+
+    <input name="name" placeholder="Course Name" required>
+
+    <textarea name="description" placeholder="Description"></textarea>
+
+    <input name="duration" placeholder="Duration">
+    <input name="fee" placeholder="Fee">
+
+    <input name="category" placeholder="Category">
+    <input name="level" placeholder="Level">
+
+    <input name="seats" placeholder="Seats">
+    <input name="status" placeholder="Status">
+
+    <label>Start Date</label>
+    <input type="date" name="start_date">
+
+    <label>End Date</label>
+    <input type="date" name="end_date">
+
+    <textarea name="syllabus" placeholder="Syllabus"></textarea>
+
+    <input name="certification" placeholder="Certification">
+
+    <input name="mode" placeholder="Mode">
+    <input name="location" placeholder="Location">
+
+    <input type="file" name="image" class="file-input">
+
+    <button type="submit" class="btn">Add Course</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Hostel</title>
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0ecff, #f5f7fa);
+}
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    background: #0f172a;
+    color: white;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: #00c6ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* FORM WRAPPER */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px; /* space for navbar */
+}
+
+/* CONTAINER */
+.form-container {
+    background: white;
+    padding: 30px;
+    width: 600px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* ROW */
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+/* INPUT */
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+/* FOCUS */
+input:focus, textarea:focus, select:focus {
+    border-color: #0072ff;
+    box-shadow: 0 0 5px rgba(0,114,255,0.2);
+    outline: none;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0,114,255,0.3);
+}
+
+/* HOVER */
+button:hover {
+    opacity: 0.9;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px) {
+    .form-container {
+        width: 90%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2>Admin Panel</h2>
+    <a href="/admindashboard/">⬅ Back to Dashboard</a>
+</header>
+
+<!-- WRAPPER -->
+<div class="wrapper">
+
+<div class="form-container">
+
+<h2>Add Hostel 🏠</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input name="hostel_name" placeholder="Hostel Name" required>
+
+<select name="hostel_type">
+    <option value="">Select Type</option>
+    <option value="Boys">Boys</option>
+    <option value="Girls">Girls</option>
+</select>
+
+<div class="form-row">
+    <input name="room_type" placeholder="Room Type">
+    <input name="total_rooms" placeholder="Total Rooms">
+</div>
+
+<div class="form-row">
+    <input name="capacity" placeholder="Capacity">
+    <input name="available" placeholder="Available Rooms">
+</div>
+
+<input name="fee" placeholder="Fee">
+
+<textarea name="facilities" placeholder="Facilities (WiFi, Gym, Laundry...)"></textarea>
+
+<div class="form-row">
+    <input name="security" placeholder="Security">
+    <input name="curfew_time" placeholder="Curfew Time">
+</div>
+
+<input name="location" placeholder="Location">
+
+<button type="submit">Add Hostel</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

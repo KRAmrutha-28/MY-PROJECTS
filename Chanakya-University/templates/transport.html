@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Transport</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/transport.css' %}">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2 class="logo">The Chanakya University</h2>
+    <nav>
+        <a href="/">Home</a>
+    </nav>
+</header>
+
+<!-- HEADER -->
+<section class="header-section">
+    <h1 data-aos="fade-up">Transport Facilities 🚌</h1>
+    <p data-aos="fade-up">Safe, Comfortable & Reliable Travel</p>
+</section>
+
+<!-- GRID -->
+<section>
+<div class="transport-grid">
+
+{% for t in transport %}
+
+<div class="transport-card" data-aos="fade-up">
+
+    <!-- 🖼️ BUS IMAGE -->
+    <div class="bus-image">
+        <img src="{{ t.image.url }}">
+    </div>
+
+    <!-- HEADER -->
+    <div class="transport-header">
+        <h2>{{ t.route_name }}</h2>
+        <span class="bus-no">{{ t.bus_no }}</span>
+    </div>
+
+    <!-- BODY -->
+    <div class="transport-body">
+
+        <div class="transport-info">
+            <p><b>Seats:</b> {{ t.seats }}</p>
+            <p><b>Available:</b> {{ t.available }}</p>
+            <p><b>Fee:</b> ₹{{ t.fee }}</p>
+        </div>
+
+        <div class="transport-time">
+            <p>🕒 Pickup: {{ t.pickup_time }}</p>
+            <p>🏫 Drop: {{ t.drop_time }}</p>
+        </div>
+
+        <div class="transport-driver">
+            <p><b>Driver:</b> {{ t.driver_name }}</p>
+            <p><b>Contact:</b> {{ t.driver_phone }}</p>
+        </div>
+
+        <div class="transport-status">
+            <span class="status {{ t.status|lower }}">{{ t.status }}</span>
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<!-- DEMO CARD -->
+<div class="transport-card">
+
+<div class="bus-image">
+<img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be">
+</div>
+
+<div class="transport-header">
+<h2>Whitefield Route</h2>
+<span class="bus-no">KA01 AB 1234</span>
+</div>
+
+<div class="transport-body">
+<div class="transport-info">
+<p><b>Seats:</b> 40</p>
+<p><b>Available:</b> 12</p>
+<p><b>Fee:</b> ₹10000/year</p>
+</div>
+
+<div class="transport-time">
+<p>🕒 Pickup: 7:30 AM</p>
+<p>🏫 Drop: 5:00 PM</p>
+</div>
+
+<div class="transport-driver">
+<p><b>Driver:</b> Ramesh</p>
+<p><b>Contact:</b> 9876543210</p>
+</div>
+
+<div class="transport-status">
+<span class="status active">Active</span>
+</div>
+</div>
+
+</div>
+
+<div class="transport-card">
+
+<div class="bus-image">
+<img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be">
+</div>
+
+<div class="transport-header">
+<h2>Whitefield Route</h2>
+<span class="bus-no">KA01 AB 1234</span>
+</div>
+
+<div class="transport-body">
+<div class="transport-info">
+<p><b>Seats:</b> 40</p>
+<p><b>Available:</b> 12</p>
+<p><b>Fee:</b> ₹10000/year</p>
+</div>
+
+<div class="transport-time">
+<p>🕒 Pickup: 7:30 AM</p>
+<p>🏫 Drop: 5:00 PM</p>
+</div>
+
+<div class="transport-driver">
+<p><b>Driver:</b> Ramesh</p>
+<p><b>Contact:</b> 9876543210</p>
+</div>
+
+<div class="transport-status">
+<span class="status active">Active</span>
+</div>
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2026 The Chanakya University | Designed by Deeven 🚀</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:1000});</script>
+
+</body>
+</html>

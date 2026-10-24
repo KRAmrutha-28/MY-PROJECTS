@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Faculty</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/admin-form.css' %}">
+<style>
+
+    /* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+/* NAVBAR */
+.navbar {
+    background: #0f172a;
+    color: white;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+/* SECTION */
+.form-section {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* CONTAINER */
+.form-container {
+    background: white;
+    width: 900px;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.form-container h1 {
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+/* GRID */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* INPUT */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+/* TEXTAREA FULL WIDTH */
+textarea {
+    margin-top: 15px;
+    height: 100px;
+}
+
+/* BUTTON */
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* HOVER */
+button:hover {
+    opacity: 0.9;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+    .form-container {
+        width: 100%;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2>Admin Panel</h2>
+    <a href="/admindashboard/">⬅ Back to Dashboard</a>
+</header>
+
+<!-- FORM SECTION -->
+<section class="form-section">
+
+<div class="form-container">
+
+<h1>Add Faculty 👨‍🏫</h1>
+<p class="subtitle">Fill all faculty details carefully</p>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<!-- GRID -->
+<div class="form-grid">
+
+<input name="name" placeholder="Full Name" required>
+<input name="designation" placeholder="Designation">
+
+<input name="email" placeholder="Email">
+<input name="phone" placeholder="Phone">
+
+<input name="qualification" placeholder="Qualification">
+<input name="experience" placeholder="Experience">
+
+<input name="specialization" placeholder="Specialization">
+<input name="availability" placeholder="Availability">
+
+<input type="date" name="joining_date">
+<input name="location" placeholder="Location">
+
+</div>
+
+<!-- FULL WIDTH -->
+<textarea name="bio" placeholder="Faculty Bio / Description"></textarea>
+
+<input type="file" name="image">
+
+<button type="submit">Add Faculty</button>
+
+</form>
+
+</div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Faculty</title>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0ecff, #f5f7fa);
+    margin: 0;
+}
+
+.navbar {
+    background: #0f172a;
+    color: white;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.form-container {
+    background: white;
+    padding: 30px;
+    width: 650px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    color: white;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2>Admin Panel</h2>
+    <a href="/admindashboard/">⬅ Back</a>
+</header>
+
+<div class="wrapper">
+<div class="form-container">
+
+<h2>Update Faculty 👨‍🏫</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input name="name" value="{{ f.name }}">
+<input name="designation" value="{{ f.designation }}">
+
+<div class="form-row">
+<input name="email" value="{{ f.email }}">
+<input name="phone" value="{{ f.phone }}">
+</div>
+
+<input name="qualification" value="{{ f.qualification }}">
+<input name="experience" value="{{ f.experience }}">
+<input name="specialization" value="{{ f.specialization }}">
+
+<textarea name="bio">{{ f.bio }}</textarea>
+
+<input name="availability" value="{{ f.availability }}">
+<input name="location" value="{{ f.location }}">
+
+<input type="file" name="image">
+
+<button type="submit">Update Faculty</button>
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>

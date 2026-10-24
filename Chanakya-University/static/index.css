@@ -1,0 +1,270 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f7fb;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 50px;
+    background: rgba(15, 23, 42, 0.95);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.navbar nav a {
+    color: white;
+    margin: 0 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #38bdf8;
+}
+
+.btn-nav {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+    url('https://images.unsplash.com/photo-1523240795612-9a054b0db644') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    color: white;
+    text-align: center;
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    font-weight: 700;
+}
+
+.hero p {
+    margin: 15px 0;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    padding: 14px 30px;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* SECTION */
+.section {
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.dark {
+    background: #eef3f9;
+}
+
+.section h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.section-sub {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* GRID */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* CARD */
+.card {
+    width: 270px;
+    margin: 15px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+/* BODY */
+.card-body {
+    padding: 16px;
+}
+
+.card h3 {
+    margin-bottom: 6px;
+    font-size: 18px;
+}
+
+/* PRICE */
+.price {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* BADGE */
+.badge {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* BOTTOM */
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* FACULTY IMAGE */
+.faculty-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin: 15px auto;
+    display: block;
+    border: 4px solid #f0f0f0;
+}
+
+/* HIGHLIGHT */
+.highlight {
+    color: #0072ff;
+    font-weight: bold;
+}
+
+/* ENQUIRY */
+.enquiry-section {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    padding: 70px 20px;
+}
+
+.enquiry-box {
+    width: 380px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.enquiry-box h2 {
+    margin-bottom: 10px;
+}
+
+.enquiry-box input,
+.enquiry-box textarea,
+.enquiry-box select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.enquiry-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* POPUP */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00c853;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 8px;
+    display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .enquiry-box {
+        width: 90%;
+    }
+}

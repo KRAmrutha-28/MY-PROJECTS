@@ -1,0 +1,30 @@
+# step1: cd ChanakayProject
+# step2: pip install -r requirements.txt
+
+Django==6.0.4
+Pillow==10.3.0
+asgiref==3.8.1
+sqlparse==0.5.0
+tzdata==2025.1
+
+
+# Step 3: Create virtual environment
+# python -m venv env
+
+# Step 4: Activate environment
+# 👉 Windows:
+# env\Scripts\activate
+
+# Step 5: Install requirements
+# pip install -r requirements.txt
+
+# Step 6: Run migrations
+# python manage.py migrate
+
+
+# Step 7: Run server
+# python manage.py runserver
+
+
+# after this for 2nd time you can directly run the server without activating the environment
+# python manage.py runserver

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enquiry Dashboard</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+
+<style>
+
+    /* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f9;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #111;
+    color: white;
+}
+
+.logout-btn {
+    background: #ff4e50;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.header h1 {
+    font-size: 32px;
+}
+
+.header p {
+    color: #666;
+}
+
+/* TABLE */
+.table-section {
+    padding: 30px;
+}
+
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #007bff;
+    color: white;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:hover {
+    background: #eef5ff;
+}
+
+/* STATUS */
+.status {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: white;
+}
+
+.status.new {
+    background: #007bff;
+}
+
+.status.contacted {
+    background: green;
+}
+
+.status.closed {
+    background: gray;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2>HR Dashboard</h2>
+    <a href="{% url 'enquiryApp:logout' %}" class="logout-btn">Logout</a>
+</header>
+
+<!-- HEADER -->
+<section class="header">
+    <h1 data-aos="fade-up">Enquiry Dashboard 📊</h1>
+    <p data-aos="fade-up">Manage and track student enquiries</p>
+</section>
+
+<!-- TABLE SECTION -->
+<section class="table-section" data-aos="fade-up">
+
+<div class="table-container">
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Course</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+</thead>
+
+<tbody>
+{% for e in enquiries %}
+<tr>
+<td>{{ e.name }}</td>
+<td>{{ e.email }}</td>
+<td>{{ e.phone }}</td>
+<td>{{ e.course }}</td>
+
+<td>
+<span class="status {{ e.status|lower }}">
+{{ e.status }}
+</span>
+</td>
+
+<td>{{ e.created_at|date:"d M Y" }}</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:1000});</script>
+
+</body>
+</html>

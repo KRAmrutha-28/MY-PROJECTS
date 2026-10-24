@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HR Login</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+
+<style>
+    /* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background: linear-gradient(to right, #00c6ff, #007bff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTAINER */
+.login-container {
+    width: 100%;
+    padding: 20px;
+}
+
+/* LOGIN BOX */
+.login-box {
+    background: white;
+    max-width: 380px;
+    margin: auto;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* TITLE */
+.login-box h2 {
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* INPUT */
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+/* BUTTON */
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-box button:hover {
+    background: #0056b3;
+}
+
+/* ERROR */
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:500px) {
+    .login-box {
+        padding: 30px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-box">
+
+        <h2>HR Login 🔐</h2>
+        <p>Access your dashboard</p>
+
+        <form method="POST" action="{% url 'enquiryApp:login' %}">
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="Enter Username" required>
+
+            <input type="password" name="password" placeholder="Enter Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

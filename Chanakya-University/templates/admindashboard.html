@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+</head>
+
+<style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    background: #f1f5f9;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #0f172a;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5f5;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: #00c6ff;
+}
+
+/* MAIN */
+.main {
+    margin-left: 250px;
+    padding: 30px;
+    width: 100%;
+}
+
+/* HEADER */
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+/* SECTION TITLE */
+.section-title {
+    margin: 30px 0 15px;
+}
+
+/* GRID */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+/* HEADER */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+}
+
+/* STATUS */
+.status {
+    background: #00c6ff;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* IMAGE */
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+/* BODY */
+.card-body {
+    padding: 15px;
+}
+
+.card-body p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* INFO */
+.info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #444;
+}
+
+/* PRICE */
+.price {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+/* ACTION */
+.card-actions {
+    padding: 10px 15px;
+    text-align: right;
+}
+
+.card-actions a {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.edit {
+    color: green;
+}
+
+.delete {
+    color: red;
+}
+
+.status {
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+}
+
+.card-body p {
+    line-height: 1.4;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+}
+</style>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+
+    <a href="{% url 'dashboard' %}">🏠 Dashboard</a>
+    <a href="{% url 'add_course' %}">➕ Add Course</a>
+    <a href="{% url 'add_faculty' %}">👨‍🏫 Add Faculty</a>
+    <a href="{% url 'add_hostel' %}">🏠 Add Hostel</a>
+    <a href="{% url 'add_transport' %}">🚌 Add Transport</a>
+    <a href="{% url 'admin_logout' %}">Logout</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Admin Dashboard 🚀</h1>
+        <p>Manage all system data in one place</p>
+    </div>
+
+    <!-- ================= COURSES ================= -->
+    <h2 class="section-title">Courses 📚</h2>
+
+    <div class="card-container">
+        {% for c in courses %}
+        <div class="card">
+
+            <div class="card-header">
+                <h3>{{ c.name }}</h3>
+                <span class="status">{{ c.status }}</span>
+            </div>
+
+            {% if c.image %}
+            <img src="{{ c.image.url }}">
+            {% endif %}
+
+            <div class="card-body">
+                <p>{{ c.description|truncatewords:10 }}</p>
+
+                <div class="info">
+                    <span>⏳ {{ c.duration }}</span>
+                    <span>🎯 {{ c.level }}</span>
+                </div>
+
+                <div class="price">₹{{ c.fee }}</div>
+            </div>
+
+            <div class="card-actions">
+                <a href="{% url 'update_course' c.id %}" class="edit">Edit</a>
+                <a href="{% url 'delete_course' c.id %}" class="delete">Delete</a>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ================= FACULTY ================= -->
+    <h2 class="section-title">Faculty 👨‍🏫</h2>
+
+    <div class="card-container">
+
+        {% for f in faculty %}
+        <div class="card">
+
+            <div class="card-header">
+                <h3>{{ f.name }}</h3>
+                <span class="status">{{ f.designation }}</span>
+            </div>
+
+            {% if f.image %}
+            <img src="{{ f.image.url }}">
+            {% endif %}
+
+            <div class="card-body">
+                <p>{{ f.bio|truncatewords:10 }}</p>
+
+                <div class="info">
+                    <span>🎓 {{ f.qualification }}</span>
+                    <span>💼 {{ f.experience }}</span>
+                </div>
+
+                <div class="price">{{ f.specialization }}</div>
+            </div>
+
+            <div class="card-actions">
+                <a href="{% url 'update_faculty' f.id %}" class="edit">Edit</a>
+                <a href="{% url 'delete_faculty' f.id %}" class="delete">Delete</a>
+            </div>
+
+        </div>
+        {% empty %}
+        <p>No faculty added yet.</p>
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ================= HOSTEL ================= -->
+<h2 class="section-title">Hostel 🏠</h2>
+
+<div class="card-container">
+
+    {% for h in hostel %}
+    <div class="card">
+
+        <div class="card-header">
+            <h3>{{ h.hostel_name }}</h3>
+            <span class="status">{{ h.hostel_type }}</span>
+        </div>
+
+        <div class="card-body">
+
+            <p><b>Room:</b> {{ h.room_type }}</p>
+
+            <div class="info">
+                <span>🏢 Rooms: {{ h.total_rooms }}</span>
+                <span>👥 Capacity: {{ h.capacity }}</span>
+            </div>
+
+            <div class="info">
+                <span>✅ Available: {{ h.available }}</span>
+                <span>📍 {{ h.location }}</span>
+            </div>
+
+            <div class="price">₹{{ h.fee }}</div>
+
+            <p><b>Facilities:</b> {{ h.facilities|truncatewords:8 }}</p>
+
+            <p><b>Security:</b> {{ h.security }}</p>
+
+        </div>
+
+        <div class="card-actions">
+            <a href="{% url 'update_hostel' h.id %}" class="edit">Edit</a>
+            <a href="{% url 'delete_hostel' h.id %}" class="delete">Delete</a>
+        </div>
+
+    </div>
+    {% empty %}
+    <p>No hostel data added yet.</p>
+    {% endfor %}
+
+</div>
+
+
+
+<!-- ================= TRANSPORT ================= -->
+<h2 class="section-title">Transport 🚌</h2>
+
+<div class="card-container">
+
+    {% for t in transport %}
+    <div class="card">
+
+        <div class="card-header">
+            <h3>{{ t.route_name }}</h3>
+            <span class="status">{{ t.status }}</span>
+        </div>
+
+        {% if t.image %}
+        <img src="{{ t.image.url }}">
+        {% endif %}
+
+        <div class="card-body">
+
+            <p><b>Bus No:</b> {{ t.bus_no }}</p>
+
+            <div class="info">
+                <span>🪑 Seats: {{ t.seats }}</span>
+                <span>✅ Available: {{ t.available }}</span>
+            </div>
+
+            <div class="info">
+                <span>🕒 {{ t.pickup_time }}</span>
+                <span>🏫 {{ t.drop_time }}</span>
+            </div>
+
+            <div class="price">₹{{ t.fee }}</div>
+
+            <p><b>Driver:</b> {{ t.driver_name }}</p>
+            <p><b>Contact:</b> {{ t.driver_phone }}</p>
+
+        </div>
+
+        <div class="card-actions">
+            <a href="{% url 'update_transport' t.id %}" class="edit">Edit</a>
+            <a href="{% url 'delete_transport' t.id %}" class="delete">Delete</a>
+        </div>
+
+    </div>
+
+    {% empty %}
+    <p>No transport added yet.</p>
+    {% endfor %}
+
+</div>
+
+</div>
+
+</body>
+</html>

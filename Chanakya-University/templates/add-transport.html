@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Transport</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0ecff, #f5f7fa);
+}
+
+
+/* NAVBAR */
+.navbar {
+    background: #0f172a;
+    color: white;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+
+/* FORM */
+.form-container {
+    background: white;
+    padding: 30px;
+    width: 600px;
+    margin: 40px auto;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+<header class="navbar">
+    <h2>Admin Panel</h2>
+    <a href="/admindashboard/">⬅ Back to Dashboard</a>
+</header>
+
+
+<div class="form-container">
+
+<h2>Add Transport 🚌</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<input name="route_name" placeholder="Route Name" required>
+<input name="bus_no" placeholder="Bus Number">
+
+<div class="form-row">
+<input type="number" name="seats" placeholder="Seats">
+<input type="number" name="available" placeholder="Available">
+</div>
+
+<input name="fee" placeholder="Fee">
+
+<div class="form-row">
+<input type="time" name="pickup_time">
+<input type="time" name="drop_time">
+</div>
+
+<input name="driver_name" placeholder="Driver Name">
+<input name="driver_phone" placeholder="Driver Phone">
+
+<select name="status">
+    <option value="Active">Active</option>
+    <option value="Inactive">Inactive</option>
+</select>
+
+<input type="file" name="image">
+
+<button type="submit">Add Transport</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

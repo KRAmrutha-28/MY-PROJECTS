@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Courses</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/course.css' %}">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2 class="logo">The Chanakya University</h2>
+    <nav>
+        <a href="/">Home</a>
+        <a href="#courses">Courses</a>
+    </nav>
+</header>
+
+<!-- TITLE -->
+<section class="header-section">
+    <h1 data-aos="fade-up">Explore Our Courses 🚀</h1>
+    <p data-aos="fade-up">Choose the best course to build your career</p>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+
+<div class="course-grid">
+
+{% for c in courses %}
+
+<div class="course-card" data-aos="fade-up">
+
+    {% if c.image %}
+        <img src="{{ c.image.url }}">
+    {% else %}
+        <img src="https://via.placeholder.com/400x250">
+    {% endif %}
+
+    <div class="course-content">
+
+        <!-- TITLE -->
+        <h3>{{ c.name }}</h3>
+
+        <!-- DESC -->
+        <p class="desc">{{ c.description|truncatewords:15 }}</p>
+
+        <!-- BASIC META -->
+        <div class="course-meta">
+            <span>⏳ {{ c.duration }}</span>
+            <span>🎯 {{ c.level }}</span>
+        </div>
+
+        <!-- 🔥 EXTRA DETAILS -->
+        <div class="course-extra">
+            <span>📚 {{ c.category }}</span> <br> <br>
+            <span>👥 Seats: {{ c.seats }}</span> <br> <br>
+            <span>💻 {{ c.mode }}</span> <br> <br>
+            <span>📍 {{ c.location }}</span> <br> <br>
+            <span>📅 {{ c.start_date }}</span><br> <br>
+            <span>🎓 {{ c.certification }}</span>
+        </div>
+
+        <!-- SYLLABUS PREVIEW -->
+        {% if c.syllabus %}
+        <p class="desc">
+            📖 {{ c.syllabus|truncatewords:10 }}
+        </p>
+        {% endif %}
+
+        <!-- FOOTER -->
+        <div class="course-footer">
+            <span class="price">₹{{ c.fee }}</span>
+            <span class="status {{ c.status|lower }}">{{ c.status }}</span>
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p style="text-align:center;">No courses available</p>
+
+{% endfor %}
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2026 The Chanakya University | Designed by Deeven 🚀</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:1000});</script>
+
+</body>
+</html>

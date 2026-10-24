@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hostel Facilities</title>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/hostel.css' %}">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <h2 class="logo">The Chanakya University</h2>
+    <nav>
+        <a href="/">Home</a>
+        <a href="#hostel">Hostel</a>
+    </nav>
+</header>
+
+<!-- HEADER -->
+<section class="header-section">
+    <h1 data-aos="fade-up">Hostel Facilities 🏠</h1>
+    <p data-aos="fade-up">Comfortable, Safe & Secure Living</p>
+</section>
+
+<!-- HOSTEL SECTION -->
+<section id="hostel">
+
+<div class="hostel-grid">
+
+{% for h in hostel %}
+
+<div class="hostel-card" data-aos="fade-up">
+
+    <!-- HEADER -->
+    <div class="hostel-header {{ h.hostel_type|lower|default:'boys' }}">
+        <h2>{{ h.hostel_name }}</h2>
+        <span>{{ h.hostel_type }}</span>
+    </div>
+
+    <div class="hostel-body">
+
+        <!-- BASIC INFO -->
+        <div class="hostel-info">
+            <p><b>Room Type:</b> {{ h.room_type }}</p>
+            <p><b>Total Rooms:</b> {{ h.total_rooms }}</p>
+            <p><b>Capacity:</b> {{ h.capacity }}</p>
+            <p><b>Available:</b> {{ h.available }}</p>
+            <p><b>Fee:</b> ₹{{ h.fee }}</p>
+        </div>
+
+        <!-- FACILITIES -->
+        <div class="hostel-facilities">
+            <h4>Facilities</h4>
+            <p>{{ h.facilities|default:"No facilities listed" }}</p>
+        </div>
+
+        <!-- EXTRA -->
+        <div class="hostel-extra">
+            <p><b>Security:</b> {{ h.security }}</p>
+            <p><b>Curfew:</b> {{ h.curfew_time }}</p>
+            <p><b>Location:</b> {{ h.location }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p style="text-align:center; width:100%;">No hostel data available</p>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<p>© 2026 The Chanakya University | Designed by Deeven 🚀</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:1000});</script>
+
+</body>
+</html>
